@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -59,8 +58,6 @@ public class MainActivity extends AppCompatActivity
                 case R.id.navigation_explore:
                     return true;
                 case R.id.navigation_notifications:
-                    return true;
-                case R.id.navigation_messages:
                     return true;
             }
             return false;
@@ -105,17 +102,11 @@ public class MainActivity extends AppCompatActivity
         // Handle bottomNavigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_drawer_profile) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_drawer_activities) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_drawer_logout) {
 
         }
 
