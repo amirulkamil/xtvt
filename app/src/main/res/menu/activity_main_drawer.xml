@@ -12,14 +12,10 @@
             android:id="@+id/nav_drawer_activities"
             android:icon="@drawable/ic_activities_black_24dp"
             android:title="Activities" />
+        <item
+            android:id="@+id/nav_drawer_logout"
+            android:icon="@drawable/ic_logout_black_24dp"
+            android:title="Logout" />
     </group>
-
-    <item android:title="Settings">
-        <menu>
-            <item
-                android:id="@+id/nav_drawer_logout"
-                android:title="Logout" />
-        </menu>
-    </item>
 
 </menu>
