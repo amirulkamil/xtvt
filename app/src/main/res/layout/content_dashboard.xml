@@ -20,6 +20,6 @@
             android:layout_marginStart="0dp"
             android:background="?android:attr/windowBackground"
             android:layout_alignParentBottom="true"
-            app:menu="@menu/bottom_navigation" />
+            app:menu="@menu/bottom_bar_navigation" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

@@ -28,7 +28,7 @@
             android:name=".Dashboard"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PostStatus"></activity>
+        <activity android:name=".CreatePost"></activity>
     </application>
 
 </manifest>
