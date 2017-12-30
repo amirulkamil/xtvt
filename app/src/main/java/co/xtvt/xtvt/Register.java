@@ -43,7 +43,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        getSupportActionBar().hide();
 
         editTextEmailRegister = (EditText) findViewById(R.id.editTextEmailRegister);
         editTextPasswordRegister = (EditText) findViewById(R.id.editTextPasswordRegister);
@@ -54,7 +53,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
         if (mAuth != null){
-            Intent intent = new Intent(Register.this, MainActivity.class);
+            Intent intent = new Intent(Register.this, Dashboard.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
@@ -228,7 +227,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     createNewUser(task.getResult().getUser());
-                    Intent intent = new Intent(Register.this, MainActivity.class);
+                    Intent intent = new Intent(Register.this, Dashboard.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
