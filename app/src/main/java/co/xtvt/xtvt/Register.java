@@ -68,7 +68,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
 
         mAuth = FirebaseAuth.getInstance();
-        databaseReferenceUser = FirebaseDatabase.getInstance().getReference("user");
+        databaseReferenceUser = FirebaseDatabase.getInstance().getReference("users");
 
         editTextUserNameRegister.addTextChangedListener(new TextWatcher() {
             @Override
