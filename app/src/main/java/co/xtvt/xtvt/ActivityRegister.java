@@ -44,13 +44,13 @@ public class ActivityRegister extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        editTextEmailRegister = (EditText) findViewById(R.id.editTextEmailRegister);
-        editTextPasswordRegister = (EditText) findViewById(R.id.editTextPasswordRegister);
-        editTextUserNameRegister = (EditText) findViewById(R.id.editTextUserNameRegister);
-        textInputLayoutUsername = (TextInputLayout) findViewById(R.id.textInputLayoutUsername);
-        textInputLayoutEmail = (TextInputLayout) findViewById(R.id.textInputLayoutEmail);
-        textInputLayoutPassword = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
-        buttonRegister = (Button) findViewById(R.id.buttonRegister);
+        editTextEmailRegister = findViewById(R.id.editTextEmailRegister);
+        editTextPasswordRegister = findViewById(R.id.editTextPasswordRegister);
+        editTextUserNameRegister = findViewById(R.id.editTextUserNameRegister);
+        textInputLayoutUsername = findViewById(R.id.textInputLayoutUsername);
+        textInputLayoutEmail = findViewById(R.id.textInputLayoutEmail);
+        textInputLayoutPassword = findViewById(R.id.textInputLayoutPassword);
+        buttonRegister = findViewById(R.id.buttonRegister);
 
         if (mAuth.getCurrentUser() != null){
             Intent intent = new Intent(ActivityRegister.this, ActivityDashboard.class);
@@ -132,7 +132,7 @@ public class ActivityRegister extends AppCompatActivity implements View.OnClickL
         if (userName.matches("[a-zA-Z0-9]*")) {
             if (userName.length() < 3) {
                 userNameValid = false;
-                textInputLayoutUsername.setError("Minimum length is 3");
+                textInputLayoutUsername.setError(getString(R.string.message_minimum_length_is_3));
                 enableButton();
             } else {
                 databaseReferenceUser.orderByChild("userName").equalTo(userName).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -140,7 +140,7 @@ public class ActivityRegister extends AppCompatActivity implements View.OnClickL
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             userNameValid = false;
-                            textInputLayoutUsername.setError("Username already exists");
+                            textInputLayoutUsername.setError(getString(R.string.message_username_exists));
                             enableButton();
                         } else {
                             userNameValid = true;
@@ -156,7 +156,7 @@ public class ActivityRegister extends AppCompatActivity implements View.OnClickL
             }
         }else {
             userNameValid = false;
-            textInputLayoutUsername.setError("Please use only A-Z and 0-9");
+            textInputLayoutUsername.setError(getString(R.string.message_alphabetical_numerical));
             enableButton();
         }
     }
@@ -169,7 +169,7 @@ public class ActivityRegister extends AppCompatActivity implements View.OnClickL
 
         if (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
             userEmailValid = false;
-            textInputLayoutEmail.setError("Email is invalid");
+            textInputLayoutEmail.setError(getString(R.string.message_email_is_invalid));
             enableButton();
         }
         else {
@@ -178,7 +178,7 @@ public class ActivityRegister extends AppCompatActivity implements View.OnClickL
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
                         userEmailValid = false;
-                        textInputLayoutEmail.setError("Email already exists");
+                        textInputLayoutEmail.setError(getString(R.string.message_email_exists));
                         enableButton();
                     }
                     else{
@@ -203,7 +203,7 @@ public class ActivityRegister extends AppCompatActivity implements View.OnClickL
 
         if (userPassword.length() < 6){
             userPasswordValid = false;
-            textInputLayoutPassword.setError("Minimum length is 6");
+            textInputLayoutPassword.setError(getString(R.string.message_minimum_length_is_6));
             enableButton();
         }
         else

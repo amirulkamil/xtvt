@@ -36,11 +36,11 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
-        editTextEmailLogin = (EditText) findViewById(R.id.editTextEmailLogin);
-        editTextPasswordLogin = (EditText) findViewById(R.id.editTextPasswordLogin);
-        textInputLayoutEmail = (TextInputLayout) findViewById(R.id.textInputLayoutEmail);
-        textInputLayoutPassword = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
-        buttonLogin = (Button) findViewById(R.id.buttonLogin);
+        editTextEmailLogin = findViewById(R.id.editTextEmailLogin);
+        editTextPasswordLogin = findViewById(R.id.editTextPasswordLogin);
+        textInputLayoutEmail = findViewById(R.id.textInputLayoutEmail);
+        textInputLayoutPassword = findViewById(R.id.textInputLayoutPassword);
+        buttonLogin = findViewById(R.id.buttonLogin);
 
         if (mAuth.getCurrentUser() != null){
             Intent intent = new Intent(ActivityLogin.this, ActivityDashboard.class);
@@ -99,7 +99,7 @@ public class ActivityLogin extends AppCompatActivity implements View.OnClickList
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             userEmailValid = false;
-            textInputLayoutEmail.setError("Email is invalid");
+            textInputLayoutEmail.setError(getString(R.string.message_email_is_invalid));
             enableButton();
         }
         else {
