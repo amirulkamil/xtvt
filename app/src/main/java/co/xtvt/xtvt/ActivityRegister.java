@@ -23,7 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Register extends AppCompatActivity implements View.OnClickListener{
+public class ActivityRegister extends AppCompatActivity implements View.OnClickListener{
 
     private EditText editTextUserNameRegister;
     private EditText editTextEmailRegister;
@@ -52,10 +52,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         textInputLayoutPassword = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
-        if (mAuth != null){
-            Intent intent = new Intent(Register.this, Dashboard.class);
+        if (mAuth.getCurrentUser() != null){
+            Intent intent = new Intent(ActivityRegister.this, ActivityDashboard.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
         }
 
         buttonRegister.setEnabled(false);
@@ -227,9 +228,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     createNewUser(task.getResult().getUser());
-                    Intent intent = new Intent(Register.this, Dashboard.class);
+                    Intent intent = new Intent(ActivityRegister.this, ActivityDashboard.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -249,7 +251,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.textViewLogin:
-                startActivity(new Intent(this, Login.class));
+                startActivity(new Intent(this, ActivityLogin.class));
                 break;
             case R.id.buttonRegister:
                 registerUser();

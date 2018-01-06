@@ -18,7 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Login extends AppCompatActivity implements View.OnClickListener{
+public class ActivityLogin extends AppCompatActivity implements View.OnClickListener{
 
     FirebaseAuth mAuth;
     EditText editTextEmailLogin;
@@ -42,10 +42,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         textInputLayoutPassword = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
 
-        if (mAuth != null){
-            Intent intent = new Intent(Login.this, Dashboard.class);
+        if (mAuth.getCurrentUser() != null){
+            Intent intent = new Intent(ActivityLogin.this, ActivityDashboard.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
         }
 
         buttonLogin.setEnabled(false);
@@ -135,11 +136,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Intent intent = new Intent(Login.this, Dashboard.class);
+                    Intent intent = new Intent(ActivityLogin.this, ActivityDashboard.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+                    finish();
                 }else {
-                    Toast.makeText(Login.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityLogin.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -149,13 +151,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.textViewRegister:
-                startActivity(new Intent(this, Register.class));
+                startActivity(new Intent(this, ActivityRegister.class));
                 break;
             case R.id.buttonLogin:
                 userLogin();
                 break;
             case R.id.textViewForgotPassword:
-                startActivity(new Intent(this, ForgotPassword.class));
+                startActivity(new Intent(this, ActivityForgotPassword.class));
                 break;
 
         }

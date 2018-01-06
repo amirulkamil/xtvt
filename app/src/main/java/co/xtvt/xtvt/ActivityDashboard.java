@@ -18,10 +18,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class Dashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ActivityDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Boolean exit = false;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +31,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         setContentView(R.layout.activity_dashboard);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        this.getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +39,7 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
 
-                Intent intent = new Intent(Dashboard.this, CreatePost.class);
+                Intent intent = new Intent(ActivityDashboard.this, ActivityCreatePost.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
@@ -56,9 +57,21 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        //set default value
+        initializeValue();
+    }
+
+    private void initializeValue(){
+        //set default title
+        getSupportActionBar().setTitle(R.string.title_home);
+
+        //set default fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameBottomNav,new FragmentBottomNavHome()).commit();
+
+        //initialize firebase auth
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -72,12 +85,15 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    getSupportActionBar().setTitle(R.string.title_home);
                     fragmentTransaction.replace(R.id.frameBottomNav,new FragmentBottomNavHome()).commit();
                     return true;
                 case R.id.navigation_explore:
+                    getSupportActionBar().setTitle(R.string.title_explore);
                     fragmentTransaction.replace(R.id.frameBottomNav,new FragmentBottomNavExplore()).commit();
                     return true;
                 case R.id.navigation_notifications:
+                    getSupportActionBar().setTitle(R.string.title_notifications);
                     fragmentTransaction.replace(R.id.frameBottomNav,new FragmentBottomNavNotifications()).commit();
                     return true;
             }
@@ -91,7 +107,6 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            //super.onBackPressed();
             if (exit) {
                 finish(); // finish activity
             } else {
@@ -134,19 +149,31 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle bottomNavigation view item clicks here.
+        // Handle drawer navigation item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_drawer_profile) {
-            // Handle the camera action
+            Intent intent = new Intent(ActivityDashboard.this, ActivityProfile.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         } else if (id == R.id.nav_drawer_activities) {
-
+            Intent intent = new Intent(ActivityDashboard.this, ActivityActivities.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         } else if (id == R.id.nav_drawer_logout) {
-
+            logOut();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void logOut(){
+        firebaseAuth.signOut();
+        Intent intent = new Intent(ActivityDashboard.this, ActivityLogin.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }

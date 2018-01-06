@@ -18,7 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ForgotPassword extends AppCompatActivity implements View.OnClickListener{
+public class ActivityForgotPassword extends AppCompatActivity implements View.OnClickListener{
 
     private TextView textViewLogin;
     private EditText editTextEmailForgotPassword;
@@ -44,13 +44,13 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(ForgotPassword.this, "Email is already sent", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivityForgotPassword.this, "Email is already sent", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
         else {
-            Toast.makeText(ForgotPassword.this, "Email does not exists", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ActivityForgotPassword.this, "Email does not exists", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -80,7 +80,7 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.textViewLogin:
-                startActivity(new Intent(this, Login.class));
+                startActivity(new Intent(this, ActivityLogin.class));
                 break;
             case R.id.buttonSubmitForgotPassword:
                 submitForgotPassword();
