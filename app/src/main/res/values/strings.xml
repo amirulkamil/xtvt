@@ -10,9 +10,19 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_bottom_navigation">BottomNavigation</string>
-    <string name="logout">Log out</string>
+    <string name="logout">Log Out</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
+    <string name="create_post">Create Post</string>
+    <string name="profile">Profile</string>
+    <string name="activities">Activities</string>
+    <string name="groups">Groups</string>
+    <string name="joined">Joined</string>
+    <string name="hosted">Hosted</string>
+    <string name="member">Member</string>
+    <string name="admin">Admin</string>
+    <string name="people">People</string>
+    <string name="posts">Posts</string>
 
     <!--message-->
     <string name="message_are_you_sure_to_log_out">Are you sure you want to log out?</string>
@@ -23,4 +33,12 @@
     <string name="message_minimum_length_is_6">Minimum length is 6</string>
     <string name="message_username_exists">Username already exists</string>
     <string name="message_alphabetical_numerical">Username must be alphabetical and numerical</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_activities">ActivityActivities</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
 </resources>

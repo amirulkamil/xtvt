@@ -7,15 +7,19 @@
         <item
             android:id="@+id/nav_drawer_profile"
             android:icon="@drawable/ic_profile_box_black_24dp"
-            android:title="Profile" />
+            android:title="@string/profile" />
         <item
             android:id="@+id/nav_drawer_activities"
             android:icon="@drawable/ic_activities_black_24dp"
-            android:title="Activities" />
+            android:title="@string/activities" />
+        <item
+            android:id="@+id/nav_drawer_groups"
+            android:icon="@drawable/ic_group_black_24dp"
+            android:title="@string/groups" />
         <item
             android:id="@+id/nav_drawer_logout"
             android:icon="@drawable/ic_logout_black_24dp"
-            android:title="Logout" />
+            android:title="@string/logout" />
     </group>
 
 </menu>

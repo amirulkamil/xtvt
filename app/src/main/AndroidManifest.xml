@@ -30,7 +30,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivityCreatePost" />
         <activity android:name=".ActivityProfile" />
-        <activity android:name=".ActivityActivities"></activity>
+        <activity
+            android:name=".ActivityGroups"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ActivityActivities"
+            android:label="@string/title_activity_activities"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
